@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\HouseholdController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,9 @@ use Illuminate\Support\Facades\Route;
 /**
  * Web API
  */
-
-\Route::get('webapi/household/members/{household}', 'Api\HouseholdController@getHouseholdMembers');
-
+\Route::get(
+        'webapi/household/{household}/members',
+        'Api\HouseholdController@getHouseholdMembers'
+    )->middleware(['auth:sanctum']);
+\Route::get('webapi/user/{user}/token/{tokenName?}', 'Api\UserController@getToken');
 
